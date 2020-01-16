@@ -45,7 +45,13 @@ class YarnSpawner(Spawner):
 
     node_label = Unicode(
         '*',
-        help='The YARN queue to submit applications under',
+        help='The node label expression to use when requesting containers for this service',
+        config=True,
+    )
+
+    nodes = Unicode(
+        None,
+        help='A list of node host names to restrict containers for this service to',
         config=True,
     )
 
