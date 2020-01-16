@@ -43,6 +43,12 @@ class YarnSpawner(Spawner):
         config=True,
     )
 
+    node_label = Unicode(
+        '*',
+        help='The YARN queue to submit applications under',
+        config=True,
+    )
+
     localize_files = Dict(
         help="""
         Extra files to distribute to the singleuser server container.
@@ -183,7 +189,8 @@ class YarnSpawner(Spawner):
             name='jupyterhub',
             queue=self.queue,
             user=self.user.name,
-            master=master
+            master=master,
+            node_label=self.node_label
         )
 
     def load_state(self, state):
